@@ -32,3 +32,14 @@ for (let i = 0; i < queries; i++) {
     l === 0 ? psArray[r] : psArray[r] - psArray[l - 1]
   );
 }
+
+/* 
+ indices  0  1  2  3  4  5  6  7
+ array = [0, 5, 2, 7, 9, 0, 1, 4]
+ pmax =  [0, 5, 5, 7, 9, 9, 9, 9]
+ max between 3,6 
+ max between 0,3
+ max between 2,7
+ max between 1,3
+ max between 5,7
+ */
