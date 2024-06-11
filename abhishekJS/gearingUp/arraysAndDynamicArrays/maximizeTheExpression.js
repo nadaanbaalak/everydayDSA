@@ -4,7 +4,7 @@ maximize the expression: (p * arr[i]) + (q * arr[j]) + (r * arr[k])
 constraint: i < j < k 
 */
 
-import { askQuestion } from "../../utils/io";
+import { askQuestion } from "../../utils/io.js";
 
 let n, p, q, r;
 
@@ -17,7 +17,7 @@ const inputArray = [];
 
 for (let i = 0; i < n; i++) {
   inputArray[i] = await askQuestion(
-    `Enter the element at index ${i}`,
+    `Enter the element at index ${i} : `,
     "number"
   );
 }
@@ -31,7 +31,7 @@ for (let i = 1; i < n; i++) {
 
 prefixMaxArray = Array.from(prefixMaxArray, (x) => x * p);
 
-const suffixMaxArray = [].fill(0, 0, n - 1);
+let suffixMaxArray = [].fill(0, 0, n - 1);
 suffixMaxArray[n - 1] = inputArray[n - 1];
 
 for (let i = n - 2; i >= 0; i--) {
@@ -40,9 +40,6 @@ for (let i = n - 2; i >= 0; i--) {
 
 suffixMaxArray = Array.from(suffixMaxArray, (x) => x * r);
 
-let a = 0,
-  b = 1,
-  c = 2;
 let maximumSum = Number.MIN_SAFE_INTEGER;
 
 for (let i = 1; i < n - 1; i++) {
@@ -50,10 +47,7 @@ for (let i = 1; i < n - 1; i++) {
     prefixMaxArray[i - 1] + inputArray[i] * q + suffixMaxArray[i + 1];
   if (currentMax > maximumSum) {
     maximumSum = currentMax;
-    a = i - 1;
-    b = i;
-    c = i + 1;
   }
 }
 
-console.log(maximumSum, a, b, c);
+console.log(maximumSum);
