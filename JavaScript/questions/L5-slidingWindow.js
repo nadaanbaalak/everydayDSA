@@ -1,5 +1,5 @@
 /**
- * Sum of every k-sized subarray
+ * Sum of every k-sized subarray along with maxSum of the k-sized sub array
  */
 
 import { getUserInput } from "../JsUtility/index.js";
@@ -7,12 +7,10 @@ import { getUserInput } from "../JsUtility/index.js";
 async function subArraySum() {
   const k = await getUserInput("Enter the array size ");
   const arr = new Array(k).fill(0);
-  console.log("After creating the array : ", arr);
   for (let i = 0; i < k; i++) {
     const userInput = await getUserInput("Enter the array value ");
     arr[i] = userInput;
   }
-  console.log("State of arrya after user input : ", arr);
   const subArraySize = await getUserInput("Enter the size of sub array : ");
   bruteForce(arr, subArraySize);
   slidingWindowApproach(arr, subArraySize);
@@ -55,7 +53,6 @@ function slidingWindowApproach(arr, subArraySize) {
   for (let i = subArraySize; i < arr.length; i++) {
     let newSum = sum - arr[i - subArraySize] + arr[i];
     sum = newSum;
-    console.log("SUM BEING ADDED", { newSum, sum });
     totalSum += newSum;
     if (maxSum < newSum) {
       maxSum = newSum;
