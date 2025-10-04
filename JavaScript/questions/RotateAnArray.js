@@ -64,4 +64,11 @@ function rotateUsingTempArray(arr, k) {
   console.log("After Rotation : ", tempArr);
 }
 
+function reverseArray(arr, start, end) {
+  const arrayLength = arr.length;
+  const startIndex = start || 0;
+  const endIndex = end || arrayLength - 1;
+  for (let i = startIndex; i < endIndex; i++) {}
+}
+
 rotateArray();
