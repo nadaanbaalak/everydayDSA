@@ -31,12 +31,21 @@ async function rotateArray() {
   }
 
   let k = await getUserInput("By how much do you want to rotate the array : ");
+  const copyOfInputArray = [...inputArray];
 
   rotateUsingTempArray(inputArray, Number(k));
 
   for (let i = 0; i < Number(k); i++) {
     rotateByOne(inputArray);
   }
+
+  reverseArray(copyOfInputArray, 0, Number(arraySize) - Number(k) - 1);
+  reverseArray(
+    copyOfInputArray,
+    Number(arraySize) - Number(k),
+    Number(arraySize) - 1
+  );
+  reverseArray(copyOfInputArray);
 
   console.log("State of Array after rotation : ", inputArray);
 }
@@ -66,9 +75,21 @@ function rotateUsingTempArray(arr, k) {
 
 function reverseArray(arr, start, end) {
   const arrayLength = arr.length;
-  const startIndex = start || 0;
-  const endIndex = end || arrayLength - 1;
-  for (let i = startIndex; i < endIndex; i++) {}
+  let startIndex = start || 0;
+  let endIndex = end || arrayLength - 1;
+  while (startIndex < endIndex) {
+    let temp = arr[startIndex];
+    arr[startIndex] = arr[endIndex];
+    arr[endIndex] = temp;
+    startIndex++;
+    endIndex--;
+  }
+  console.log(
+    `After Reversing the array from ${start || 0} to ${
+      end || arrayLength - 1
+    } : `,
+    arr
+  );
 }
 
 rotateArray();
