@@ -12,7 +12,16 @@ async function gcd() {
     const userInput = await getUserInput("Enter the value : ");
     arr[i] = userInput;
   }
+  if (arr.length < 2) {
+    return;
+  }
+
   bruteForce(arr);
+  let gcd = euclideanMethod(arr[0], arr[1]);
+  for (let i = 2; i < arr.length; i++) {
+    gcd = euclideanMethod(gcd, arr[i]);
+  }
+  console.log("Euclidean Method :: ", gcd);
 }
 
 function bruteForce(arr) {
@@ -34,6 +43,15 @@ function bruteForce(arr) {
     }
   }
   console.log("BRUTE_FORCE", greatestDivisor);
+}
+
+function euclideanMethod(a, b) {
+  const max = Math.max(a, b);
+  const min = Math.min(a, b);
+  if (max % min === 0) {
+    return min;
+  }
+  return euclideanMethod(min, max % min);
 }
 
 gcd();
